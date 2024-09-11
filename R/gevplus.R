@@ -7,7 +7,7 @@
 NULL
 
 
-#' GEV+: GEV constrained to positive shape parameters
+#' Generalized extreme value distribution constrained to positive shape parameters (GEV+)
 #'
 #' Negative GEV shape parameters are considered artifacts from sample
 #' uncertainties. The GEV+ provides a fit to data series with
@@ -79,9 +79,7 @@ fgevplus <- function(x, method = c("Lmoments", "MLE")) {
 }
 
 
-#' Compute return levels and confidence intervals for
-#' Generalized Extreme Value distribution with restriction to positive
-#' shape parameters (GEV+) aka the gevplus distribution
+#' Return levels and confidence intervals for the GEV+
 #'
 #' This function computes return levels and confidence intervals
 #' for the GEV+ distribution. It handles both cases when the input fit object
