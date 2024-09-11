@@ -1,10 +1,10 @@
 Package: gevplus
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Fitting the Generalized Extreme Value Distribution constrained to Positive Shape Parameters
+Version: 0.0.1
 Authors@R: 
     person("Harald", "Schellander", email = "harald.schellander@geosphere.at", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-7661-287X", "Package creator and maintainer"))
-Description: What the package does (one paragraph).
+Description: Extreme value analysis with a generalized extreme value distribution constrained to positive shape parameters (Moccia et al., 2021, <doi:10.1016/j.ejrh.2021.100906>). The estimation method can be selected, and return levels can be calculated, with confidence intervals. 
 Maintainer: Harald Schellander <harald.schellander@geosphere.at>
 Depends: R (>= 4.1)
 Imports: dplyr, extRemes, Lmoments
