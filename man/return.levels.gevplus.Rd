@@ -2,9 +2,7 @@
 % Please edit documentation in R/gevplus.R
 \name{return.levels.gevplus}
 \alias{return.levels.gevplus}
-\title{Compute return levels and confidence intervals for
-Generalized Extreme Value distribution with restriction to positive
-shape parameters (GEV+) aka the gevplus distribution}
+\title{Return levels and confidence intervals for the GEV+}
 \usage{
 return.levels.gevplus(
   x,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gevplus.R
 \name{fgevplus}
 \alias{fgevplus}
-\title{GEV+: GEV constrained to positive shape parameters}
+\title{Generalized extreme value distribution constrained to positive shape parameters (GEV+)}
 \usage{
 fgevplus(x, method = c("Lmoments", "MLE"))
 }
