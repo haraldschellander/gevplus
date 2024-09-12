@@ -103,7 +103,6 @@ fgevplus <- function(x, method = c("Lmoments", "MLE")) {
 #' @export
 #'
 #' @examples
-#' requireNamespace("extRemes", quietly = TRUE)
 #' z <- extRemes::revd(100, loc = 20, scale = 0.5, shape = -0.2)
 #' fit <- fgevplus(z)
 #' return.level(fit)
@@ -292,14 +291,14 @@ plot.gevplus <- function(x, q = c(2, 10, 20, 30, 50, 75, 100, 150, 200),
           ci_u = rls[, 3]
         )
         res <- t
-        plot(q, res$rl, type = "l", xlab = "Return Period (years)", ylab = "Return Level", ylim = c(0, max(rls) * 1.2), log = "x")
+        plot(q, res$rl, type = "l", xlab = "Return Period (years)", ylab = "Return Level", ylim = c(0, max(res) * 1.2), log = "x")
         points(obs.x, sort(obs.y))
         lines(q, res$ci_l, lty = 2, col = "grey")
         lines(q, res$ci_u, lty = 2, col = "grey")
       } else {
         rls <- extRemes::return.level(x$fit, return.period = q)
         est <- as.numeric(rls)
-        plot(q, est, type = "l", xlab = "Return Period (years)", ylab = "Return Level", ylim = c(0, max(rls) * 1.2), log = "x")
+        plot(q, est, type = "l", xlab = "Return Period (years)", ylab = "Return Level", ylim = c(0, max(est) * 1.2), log = "x")
         points(obs.x, sort(obs.y))
       }
 
@@ -323,7 +322,7 @@ plot.gevplus <- function(x, q = c(2, 10, 20, 30, 50, 75, 100, 150, 200),
         lines(q, rls$ci_l, lty = 2, col = "grey")
         lines(q, rls$ci_u, lty = 2, col = "grey")
       } else {
-        plot(q, est, type = "l", xlab = "Return Period (years)", ylab = "Return Level", ylim = c(0, max(rls) * 1.2), log = "x")
+        plot(q, est, type = "l", xlab = "Return Period (years)", ylab = "Return Level", ylim = c(0, max(est) * 1.2), log = "x")
         points(obs.x, sort(obs.y))
       }
     }
