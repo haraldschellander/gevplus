@@ -29,7 +29,6 @@ is of class 'fevd' and when it's not. Confidence intervals can be constructed
 with a parametric bootstrap approach.
 }
 \examples{
-requireNamespace("extRemes", quietly = TRUE)
 z <- extRemes::revd(100, loc = 20, scale = 0.5, shape = -0.2)
 fit <- fgevplus(z)
 return.level(fit)

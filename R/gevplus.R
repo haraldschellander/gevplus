@@ -93,6 +93,23 @@ fgevplus <- function(x, method = c("Lmoments", "MLE")) {
 #' i.e. an object of class \code{gevplus}.
 #' @param return.period A numeric vector of return periods.
 #' @param ... Additional parameters alpha and R for the bootstrap procedure.
+#' @export
+return.level <- function(x, return.period = c(2, 20, 100), ...) {
+  UseMethod("return.level", x)
+}
+
+
+#' Return levels and confidence intervals for the GEV+
+#'
+#' This function computes return levels and confidence intervals
+#' for the GEV+ distribution. It handles both cases when the input fit object
+#' is of class 'fevd' and when it's not. Confidence intervals can be constructed
+#' with a parametric bootstrap approach.
+#'
+#' @param x A list as returned from function \code{\link{fgevplus}},
+#' i.e. an object of class \code{gevplus}.
+#' @param return.period A numeric vector of return periods.
+#' @param ... Additional parameters alpha and R for the bootstrap procedure.
 #' @param do.ci When \code{do.ci=TRUE}, either a parametric bootstrap method is used
 #' to calculate confidence intervals of level alpha, or the intrinsic ci functions of
 #' package extRemes are used (see also \code{\link[extRemes]{fevd}})
@@ -100,6 +117,8 @@ fgevplus <- function(x, method = c("Lmoments", "MLE")) {
 #' @return A tibble containing either only the estimates or additionally the
 #' the lower and upper bounds of the confidence interval.
 #'
+#' @method return.level gevplus
+#' @rdname return.level.gevplus
 #' @export
 #'
 #' @examples
@@ -112,6 +131,7 @@ fgevplus <- function(x, method = c("Lmoments", "MLE")) {
 #'
 return.level.gevplus <- function(x, return.period = c(2, 20, 100), ...,
                                  do.ci = FALSE) {
+  #UseMethod("return.level")
 
   if(!inherits(x, "gevplus"))
     stop("x must be object of class 'gevplus'")

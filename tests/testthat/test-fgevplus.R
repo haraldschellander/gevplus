@@ -1,22 +1,25 @@
+set.seed(123)
+mock_data <- rnorm(100)
+
 test_that("fgevplus handles method argument correctly", {
-  data <- rnorm(100)
 
   # Test with default method (Lmoments)
-  result <- fgevplus(data)
+  result <- fgevplus(mock_data)
   expect_equal(result$method, "Lmoments")
 
   # Test with explicit method (MLE)
-  result <- fgevplus(data, method = "MLE")
+  result <- fgevplus(mock_data, method = "MLE")
   expect_equal(result$method, "MLE")
 
   # Test for invalid method
-  expect_error(fgevplus(data, method = "INVALID"), "'arg' should be one of \"Lmoments\", \"MLE\"")
+  expect_error(fgevplus(mock_data, method = "INVALID"), "'arg' should be one of \"Lmoments\", \"MLE\"")
 })
 
 test_that("fgevplus uses L-moments method when tau3 <= tau3_thresh", {
   # Mocking Lmoments to produce tau3 <= tau3_thresh
   mock_lmoments <- list(lambdas = c(10, 2), ratios = c(NA, NA, 0.05))
-  mock_data <- rnorm(100)
+  #set.seed(123)
+  #mock_data <- rnorm(100)
   assign("Lmoments", function(.data, returnobject) mock_lmoments, envir = .GlobalEnv)
 
   result <- fgevplus(mock_data, method = "Lmoments")
@@ -30,7 +33,7 @@ test_that("fgevplus uses L-moments method when tau3 <= tau3_thresh", {
 test_that("fgevplus uses MLE method when tau3 <= tau3_thresh", {
   # Mocking Lmoments to produce tau3 <= tau3_thresh
   mock_lmoments <- list(lambdas = c(10, 2), ratios = c(NA, NA, 0.05))
-  mock_data <- rnorm(100)
+  #mock_data <- rnorm(100)
   assign("Lmoments", function(.data, returnobject) mock_lmoments, envir = .GlobalEnv)
 
   # Check for MLE method
@@ -50,7 +53,7 @@ test_that("fgevplus uses GEV method when tau3 > tau3_thresh", {
 })
 
 test_that("fgevplus returns correct output structure", {
-  mock_data <- rnorm(100)
+  #mock_data <- rnorm(100)
   result <- fgevplus(mock_data)
 
   # Check if the output is a list with the correct components
