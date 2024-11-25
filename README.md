@@ -4,13 +4,12 @@
 # gevplus
 
 <!-- badges: start -->
-
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) -->
 ![Dev vesrion](https://img.shields.io/github/v/tag/haraldschellander/gevplus)
 [![CRAN status](https://www.r-pkg.org/badges/version/gevplus)](https://CRAN.R-project.org/package=gevplus)
 <!-- badges: end -->
 
-R-functions for Fitting the Generalized Extreme Value Distribution
+R-package with functions for Fitting the Generalized Extreme Value Distribution
 constrained to Positive Shape Parameters
 
 Based on [Moccia et al.,
