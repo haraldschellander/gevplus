@@ -5,9 +5,10 @@
 
 <!-- badges: start -->
 <!-- [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) -->
-![https://img.shields.io/github/v/tag/haraldschellander/gevplus](https://img.shields.io/github/v/tag/haraldschellander/gevplus?include_prereleases)
-![Coverage](https://img.shields.io/codecov/c/github/haraldschellander/gevplus)
 [![CRAN status](https://www.r-pkg.org/badges/version/gevplus)](https://CRAN.R-project.org/package=gevplus)
+![https://img.shields.io/github/v/tag/haraldschellander/gevplus](https://img.shields.io/github/v/tag/haraldschellander/gevplus?include_prereleases)
+[![Coverage](https://img.shields.io/codecov/c/github/haraldschellander/gevplus)](https://app.codecov.io/gh/haraldschellander/gevplus)
+
 <!-- badges: end -->
 
 R-package with functions for Fitting the Generalized Extreme Value Distribution
