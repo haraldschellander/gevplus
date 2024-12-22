@@ -1,12 +1,12 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>/404.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
-<url><loc>/reference/fgevplus.html</loc></url>
-<url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/plot.gevplus.html</loc></url>
-<url><loc>/reference/print.gevplus.html</loc></url>
-<url><loc>/reference/return.level.gevplus.html</loc></url>
-<url><loc>/reference/return.level.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/404.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/authors.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/index.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/reference/fgevplus.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/reference/index.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/reference/plot.gevplus.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/reference/print.gevplus.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/reference/return.level.gevplus.html</loc></url>
+<url><loc>https://haraldschellander.github.io/gevplus/reference/return.level.html</loc></url>
 </urlset>
 

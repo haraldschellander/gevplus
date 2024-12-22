@@ -2,4 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-12-22T20:36Z
+last_built: 2024-12-22T20:46Z
+urls:
+  reference: https://haraldschellander.github.io/gevplus/reference
+  article: https://haraldschellander.github.io/gevplus/articles
