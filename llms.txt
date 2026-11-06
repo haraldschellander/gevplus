@@ -1,0 +1,35 @@
+# gevplus
+
+R-package with functions for Fitting the Generalized Extreme Value
+Distribution constrained to Positive Shape Parameters
+
+Based on [Moccia et al.,
+2021](https://www.sciencedirect.com/science/article/pii/S221458182100135X)
+
+## Installation
+
+You can install the development version of gevplus from
+[GitHub](https://github.com/) with:
+
+``` r
+
+# install.packages("pak")
+pak::pak("haraldschellander/gevplus")
+```
+
+# Package index
+
+## All functions
+
+- [`fgevplus()`](https://haraldschellander.github.io/gevplus/reference/fgevplus.md)
+  : Generalized extreme value distribution constrained to positive shape
+  parameters (GEV+)
+- [`plot(`*`<gevplus>`*`)`](https://haraldschellander.github.io/gevplus/reference/plot.gevplus.md)
+  : Plot graphs of GEV+ fit
+- [`print(`*`<gevplus>`*`)`](https://haraldschellander.github.io/gevplus/reference/print.gevplus.md)
+  : Print method for object of class gevplus
+- [`return.level()`](https://haraldschellander.github.io/gevplus/reference/return.level.md)
+  : Return levels and confidence intervals for the GEV+
+- [`return.level(`*`<gevplus>`*`)`](https://haraldschellander.github.io/gevplus/reference/return.level.gevplus.md)
+  : Return levels and confidence intervals for the GEV+
+
