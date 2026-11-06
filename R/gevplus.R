@@ -184,18 +184,7 @@ return.level.gevplus <- function(x, return.period = c(2, 20, 100), ...,
     res <- est
 
     if (do.ci) {
-      # parametric bootstrap
-      sam <- list()
-      for (i in 1:R){
-        nd <- extRemes::revd(n = length(x$x), x$params[1], x$params[2], x$params[3])
-        fit <- extRemes::fevd(nd, type = "GEV", method = x$method)
-        pars <- extRemes::strip(fit)
-        sam[[i]] <- extRemes::qevd(1 - 1 / return.period, pars[1], pars[2], pars[3])
-      }
-      sam <- do.call(cbind, sam)
-      cis <- apply(sam, 1, quantile, probs = c(alpha / 2, 1 - alpha / 2))
-      rls <- dplyr::tibble(ci_l = cis[1, ], rl = est, ci_u = cis[2, ])
-      res <- rls
+      res <- bootstrap_rl(x, return.period, est, alpha, R)
     }
   }
   return(res)
@@ -326,17 +315,7 @@ plot.gevplus <- function(x, q = c(2, 10, 20, 30, 50, 75, 100, 150, 200),
       est <- extRemes::qevd(1 - 1 / q, x$params[1], x$params[2], x$params[3])
 
       if (ci) {
-        # parametric bootstrap
-        sam <- list()
-        for (i in 1:R){
-          nd <- extRemes::revd(n = length(x$x), x$params[1], x$params[2], x$params[3])
-          fit <- extRemes::fevd(nd, type = "GEV", method = x$method)
-          pars <- extRemes::strip(fit)
-          sam[[i]] <- extRemes::qevd(1 - 1 / q, pars[1], pars[2], pars[3])
-        }
-        sam <- do.call(cbind, sam)
-        cis <- apply(sam, 1, quantile, probs = c(alpha / 2, 1 - alpha / 2))
-        rls <- dplyr::tibble(ci_l = cis[1, ], rl = est, ci_u = cis[2, ])
+        rls <- bootstrap_rl(x, q, est, alpha, R)
         plot(q, rls$rl, type = "l", xlab = "Return Period (years)", ylab = "Return Level", ylim = c(0, max(rls) * 1.2), log = "x")
         points(obs.x, sort(obs.y))
         lines(q, rls$ci_l, lty = 2, col = "grey")
@@ -384,3 +363,19 @@ plot.gevplus <- function(x, q = c(2, 10, 20, 30, 50, 75, 100, 150, 200),
 
 }
 
+
+# Parametric bootstrap confidence intervals for GEV+ return levels.
+# Samples are simulated from the fitted GEV+ parameters and each sample is
+# refitted with fgevplus() itself, so the shape >= 0 constraint (incl. the
+# Gumbel case with shape fixed at 0) is applied to every replicate.
+bootstrap_rl <- function(x, return.period, est, alpha, R) {
+  n <- length(x$x)
+  sam <- vapply(seq_len(R), function(i) {
+    nd <- extRemes::revd(n = n, x$params[1], x$params[2], x$params[3])
+    pars <- fgevplus(nd, method = x$method)$params
+    extRemes::qevd(1 - 1 / return.period, pars[1], pars[2], pars[3])
+  }, numeric(length(return.period)))
+  sam <- matrix(sam, nrow = length(return.period))
+  cis <- apply(sam, 1, quantile, probs = c(alpha / 2, 1 - alpha / 2))
+  dplyr::tibble(ci_l = cis[1, ], rl = est, ci_u = cis[2, ])
+}

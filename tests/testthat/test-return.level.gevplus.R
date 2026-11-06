@@ -114,3 +114,49 @@ test_that("return.level handles invalid R correctly", {
   x <- fgevplus(data, method = "Lmoments")
   expect_error(return.level(x, do.ci = TRUE, R = -1), "R must be > 0")
 })
+
+test_that("return.level.gevplus rejects non-gevplus objects", {
+  expect_error(return.level.gevplus(list(method = "Lmoments")),
+               "x must be object of class 'gevplus'")
+})
+
+test_that("return.level rejects an unknown method", {
+  x <- fgevplus(data, method = "Lmoments")
+  x$method <- "INVALID"
+  expect_error(return.level(x), "invalid method")
+})
+
+test_that("return.level matches the GEV quantile function", {
+  x <- fgevplus(data, method = "Lmoments")
+  rp <- c(2, 20, 100)
+  expected <- extRemes::qevd(1 - 1 / rp, x$params[1], x$params[2], x$params[3])
+  expect_equal(return.level(x, return.period = rp), expected)
+  expect_true(all(diff(return.level(x, return.period = rp)) > 0))
+})
+
+test_that("bootstrap CIs for a Gumbel fit bracket the estimate", {
+  set.seed(1)
+  x <- fgevplus(rnorm(100, mean = 20, sd = 5), method = "Lmoments")
+  expect_equal(unname(x$params[3]), 0)
+  res <- return.level(x, return.period = c(2, 20, 100), do.ci = TRUE, R = 50)
+  expect_named(res, c("ci_l", "rl", "ci_u"))
+  expect_true(all(res$ci_l <= res$rl & res$rl <= res$ci_u))
+})
+
+test_that("bootstrap CIs get narrower with larger alpha", {
+  x <- fgevplus(data, method = "Lmoments")
+  set.seed(2)
+  wide <- return.level(x, return.period = 100, do.ci = TRUE, R = 50, alpha = 0.05)
+  set.seed(2)
+  narrow <- return.level(x, return.period = 100, do.ci = TRUE, R = 50, alpha = 0.5)
+  expect_lt(narrow$ci_u - narrow$ci_l, wide$ci_u - wide$ci_l)
+})
+
+test_that("return.level works for a Gumbel MLE fit", {
+  set.seed(3)
+  x <- fgevplus(rnorm(100, mean = 20, sd = 5), method = "MLE")
+  expect_s3_class(x$fit, "fevd")
+  expect_length(return.level(x, return.period = c(2, 20)), 2)
+  res <- return.level(x, return.period = c(2, 20), do.ci = TRUE)
+  expect_true(all(res$ci_l <= res$rl & res$rl <= res$ci_u))
+})

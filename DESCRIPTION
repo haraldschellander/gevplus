@@ -1,6 +1,6 @@
 Package: gevplus
 Title: Fitting the Generalized Extreme Value Distribution constrained to Positive Shape Parameters
-Version: 0.0.1
+Version: 1.0.1
 Authors@R: 
     person("Harald", "Schellander", email = "harald.schellander@geosphere.at", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-7661-287X", "Package creator and maintainer"))
@@ -14,5 +14,5 @@ Suggests:
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
 URL: https://haraldschellander.github.io/gevplus/
+Config/roxygen2/version: 8.1.1

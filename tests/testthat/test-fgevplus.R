@@ -1,6 +1,8 @@
 set.seed(123)
 mock_data <- rnorm(100)
 
+gumbel_tau3 <- function(x) Lmoments::Lmoments(x, returnobject = TRUE)$ratios[3]
+
 test_that("fgevplus handles method argument correctly", {
 
   # Test with default method (Lmoments)
@@ -16,11 +18,8 @@ test_that("fgevplus handles method argument correctly", {
 })
 
 test_that("fgevplus uses L-moments method when tau3 <= tau3_thresh", {
-  # Mocking Lmoments to produce tau3 <= tau3_thresh
-  mock_lmoments <- list(lambdas = c(10, 2), ratios = c(NA, NA, 0.05))
-  #set.seed(123)
-  #mock_data <- rnorm(100)
-  assign("Lmoments", function(.data, returnobject) mock_lmoments, envir = .GlobalEnv)
+  # Precondition: normal data has L-skewness ~0, i.e. the Gumbel branch
+  expect_lte(gumbel_tau3(mock_data), log(9/8) / log(2))
 
   result <- fgevplus(mock_data, method = "Lmoments")
 
@@ -31,10 +30,8 @@ test_that("fgevplus uses L-moments method when tau3 <= tau3_thresh", {
 })
 
 test_that("fgevplus uses MLE method when tau3 <= tau3_thresh", {
-  # Mocking Lmoments to produce tau3 <= tau3_thresh
-  mock_lmoments <- list(lambdas = c(10, 2), ratios = c(NA, NA, 0.05))
-  #mock_data <- rnorm(100)
-  assign("Lmoments", function(.data, returnobject) mock_lmoments, envir = .GlobalEnv)
+  # Precondition: normal data has L-skewness ~0, i.e. the Gumbel branch
+  expect_lte(gumbel_tau3(mock_data), log(9/8) / log(2))
 
   # Check for MLE method
   result <- fgevplus(mock_data, method = "MLE")

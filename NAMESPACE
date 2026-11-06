@@ -7,18 +7,24 @@ export(fgevplus)
 export(return.level)
 importFrom(Lmoments,Lmoments)
 importFrom(dplyr,tibble)
-importFrom(extRemes,fevd)
-importFrom(extRemes,qevd)
-importFrom(extRemes,return.level)
-importFrom(extRemes,revd)
-importFrom(extRemes,strip)
-importFrom(graphics,abline)
-importFrom(graphics,hist)
-importFrom(graphics,legend)
-importFrom(graphics,lines)
-importFrom(graphics,par)
-importFrom(graphics,points)
-importFrom(graphics,title)
-importFrom(stats,na.omit)
-importFrom(stats,quantile)
-importFrom(stats,setNames)
+importFrom(extRemes,
+  fevd,
+  qevd,
+  return.level,
+  revd,
+  strip
+)
+importFrom(graphics,
+  abline,
+  hist,
+  legend,
+  lines,
+  par,
+  points,
+  title
+)
+importFrom(stats,
+  na.omit,
+  quantile,
+  setNames
+)
